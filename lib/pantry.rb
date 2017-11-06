@@ -16,6 +16,8 @@ class Pantry
   end
 
   def restock(ingredient, amount)
-    @stock[ingredient] = amount
+    if @stock[ingredient]
+     @stock[ingredient] += amount
+    end
   end
 end
