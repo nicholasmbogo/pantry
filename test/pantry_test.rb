@@ -48,4 +48,15 @@ class PantryTest < Minitest::Test
 
     assert_equal ({"Cheese" => 20, "Flour" => 20}), pantry.add_to_shopping_list(r)
   end
+
+  def test_can_add_on_more_recipe_to_the_existing_recipe
+    pantry = Pantry.new
+    r = Recipe.new("Spaghetti")
+    r.add_ingredient("Cheese", 20)
+    r.add_ingredient("Flour", 20)
+    pantry.add_to_shopping_list(r)
+    pantry.add_to_shopping_list(r2)
+
+    assert_equal ({"Cheese" => 25, "Flour" => 20, "Spaghetti Noodles" => 10, "Marinara Sauce" => 10}), pantry.shopping_list
+  end
 end

@@ -1,9 +1,10 @@
 class Pantry
 
-  attr_reader :stock
+  attr_reader :stock, :shopping_list
 
   def initialize
     @stock = {}
+    @shopping_list = {}
   end
 
   def stock_check(ingredient)
@@ -25,5 +26,12 @@ class Pantry
   end
 
   def add_to_shopping_list(recipe)
+    recipe.ingredients.each do |ingredient, quantity|
+      if @shopping_list[ingredient]
+        @shopping_list[ingredient] += quantity
+      else
+        @shopping_list[ingredient] = quantity
+      end
+    end
   end
 end
