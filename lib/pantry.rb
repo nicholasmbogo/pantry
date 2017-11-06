@@ -1,10 +1,11 @@
 class Pantry
 
-  attr_reader :stock, :shopping_list
+  attr_reader :stock, :shopping_list, :cook_book
 
   def initialize
     @stock = {}
     @shopping_list = {}
+    @cook_book = []
   end
 
   def stock_check(ingredient)
@@ -32,6 +33,24 @@ class Pantry
       else
         @shopping_list[ingredient] = quantity
       end
+    end
+  end
+
+  def print_shopping_list
+    print_list = ""
+
+    @shopping_list.each {|ingredient, quantity| print_list << "* #{ingredient}: #{quantity}\n"}
+
+    print_list.chop
+  end
+
+  def add_to_cookbook(recipe)
+    @cook_book << recipe
+  end
+
+  def has_all_ingredients(ingredients_list)
+    ingredients_list.to_a.all? do |ingredient|
+      @stock[ingredient[0]] && @stock[ingredient[0]] >= ingredient[1]
     end
   end
 end

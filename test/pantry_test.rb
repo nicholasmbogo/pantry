@@ -65,6 +65,8 @@ class PantryTest < Minitest::Test
   end
 
   def test_it_can_print_out_a_shopping_a_shopping_list
+    pantry = Pantry.new
+    r = Recipe.new("Spaghetti")
     r.add_ingredient("Cheese", 20)
     r.add_ingredient("Flour", 20)
     pantry.add_to_shopping_list(r)
@@ -77,4 +79,27 @@ class PantryTest < Minitest::Test
     assert_equal "* Cheese: 25\n* Flour: 20\n* Spaghetti Noodles: 10\n* Marinara Sauce: 10", pantry.print_shopping_list
   end
 
+  def test_can_add_to_a_cook_book
+    pantry = Pantry.new
+    # Building our recipe
+    r1 = Recipe.new("Cheese Pizza")
+    r2 = Recipe.new("Brine Shot")
+    r3 = Recipe.new("Peanuts")
+    # Adding the recipe to the cookbook
+    pantry.add_to_cookbook(r1)
+    pantry.add_to_cookbook(r2)
+    pantry.add_to_cookbook(r3)
+
+    assert_equal 3, pantry.cook_book.count
+    assert_instance_of Recipe, pantry.cook_book.first
+  end
+
+  def test_can_determine_if_it_stock_has_ingridients_list
+    pantry = Pantry.new
+    ingredients_list = {"cheese" => 50, "flour" =>  30}
+    pantry.restock("cheese", 100)
+    pantry.restock("flour", 50)
+
+    assert_equal true, pantry.has_all_ingredients(ingredients_list)
+  end
 end
