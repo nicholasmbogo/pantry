@@ -23,4 +23,7 @@ class Pantry
     @stock[ingredient] = amount
    end
   end
+
+  def add_to_shopping_list(recipe)
+  end
 end

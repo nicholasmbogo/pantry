@@ -39,23 +39,13 @@ class PantryTest < Minitest::Test
   end
 
   def test_it_can_add_to_shopping_list
-    r = Recipe.new("Cheese Pizza")
-    r.ingredients
+    pantry = Pantry.new
+    r = Recipe.new("Spaghetti")
     r.add_ingredient("Cheese", 20)
     r.add_ingredient("Flour", 20)
-    r.ingredients
-    #pantry.add_to_shopping_list(r)
-    assert_instance_of , pantry.add_to_shopping_list(r)
-  end
+    pantry.add_to_shopping_list(r)
 
-  # def test_can_print_a_shopping_listy
-  #   skip
-  #   r = Recipe.new("Spaghetti")
-  #   r.add_ingredient("Spaghetti Noodles", 10)
-  #   r.add_ingredient("Marinara Sauce", 10)
-  #   r.add_ingredient("Cheese", 5)
-  #   pantry.add_to_shopping_list(r)
-  #   pantry.shopping_list
-  #   assert_equal {}, pantry.print_shopping_list
-  # end
+
+    assert_equal ({"Cheese" => 20, "Flour" => 20}), pantry.add_to_shopping_list(r)
+  end
 end
