@@ -15,5 +15,16 @@ class PantryTest < Minitest::Test
     assert_equal ({}), pantry.stock
   end
 
-  def test_
+  def test_has_stock_check
+    pantry = Pantry.new
+
+    assert_equal 0, pantry.stock_check("cheese")
+  end
+
+  def test_can_restock_when_stock_is_empty
+    pantry = Pantry.new
+    pantry.restock("cheese" => 10)
+
+    assert_equal 10, pantry.stock_check("cheese")
+  end
 end
