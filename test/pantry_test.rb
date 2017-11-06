@@ -1,6 +1,7 @@
 require './lib/pantry'
 require 'minitest/autorun'
 require 'minitest/pride'
+require 'pry'
 
 class PantryTest < Minitest::Test
   def test_it_exists
@@ -30,9 +31,9 @@ class PantryTest < Minitest::Test
 
   def test_can_restock_more_when_not_empty
     pantry = Pantry.new
-    pantry.restock("cheese", 10)
+    pantry.restock("Cheese", 10)
     pantry.restock("Cheese", 20)
 
-    assert_equal 30, pantry.stock_check("cheese")
+    assert_equal 30, pantry.stock_check("Cheese")
   end
 end
