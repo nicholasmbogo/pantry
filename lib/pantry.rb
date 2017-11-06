@@ -53,4 +53,15 @@ class Pantry
       @stock[ingredient[0]] && @stock[ingredient[0]] >= ingredient[1]
     end
   end
+
+
+  def what_can_i_make
+    recipes = @cook_book.select do |recipe|
+      has_all_ingredients(recipe.ingredients)
+    end
+    recipes.map {|recipe| recipe.name}
+  end
+
+  def how_many_can_i_make
+  end
 end
