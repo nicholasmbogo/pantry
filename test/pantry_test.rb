@@ -110,8 +110,6 @@ class PantryTest < Minitest::Test
 
     assert_equal true, pantry.has_all_ingredients(ingredients_list)
   end
-end
-
   def test_can_choose_what_to_make
     pantry = Pantry.new
     # Building our recipe
@@ -163,4 +161,5 @@ end
     assert_equal pantry.what_can_i_make,["Brine Shot", "Peanuts"]
     # How many can i make?
   end
+end
 end
